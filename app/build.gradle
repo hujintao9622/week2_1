@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
-
+//2、app下的 build.gradle GreenDao依赖之一
+apply plugin: 'org.greenrobot.greendao'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -17,6 +18,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+//4、app下的build.gradle 中 放到 dependencies 的外边GreenDao依赖之一
+greendao {
+    schemaVersion 1 //数据库版本号
+    daoPackage 'com.bawei.week2_1.database' //设置时生成代码的目录
+    targetGenDir 'src/main/java' //设置DaoMaster、DaoSession、Dao目录
 }
 
 dependencies {
@@ -26,4 +37,36 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    //GSON依赖
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+//日志拦截器
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+
+//Glide依赖
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
+
+//retrofit2.0依赖
+    implementation'com.squareup.retrofit2:retrofit:+'
+//让retrofit支持Gson自动解析json
+    implementation'com.squareup.retrofit2:converter-gson:+'
+//让retrofit支持Rxjava2
+    implementation'com.squareup.retrofit2:adapter-rxjava2:+'
+//Rxjava依赖
+    implementation'io.reactivex.rxjava2:rxjava:+'
+    implementation'io.reactivex.rxjava2:rxandroid:+'
+    //RecyclerView依赖：
+    implementation 'com.android.support:recyclerview-v7:29.0.2'
+
+//butterknife依赖
+    implementation 'com.jakewharton:butterknife:10.2.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
+    //Okhttp依赖
+    implementation 'com.squareup.okhttp3:okhttp:3.9.0'
+
+//EventBus依赖库:
+    implementation 'org.greenrobot:eventbus:3.1.1'
+    //GreenDao依赖之一
+    implementation 'org.greenrobot:greendao:3.2.2'
 }
